@@ -1,0 +1,54 @@
+.App{
+  padding: 40px;
+  background: rgb(105,193,109);
+  background: linear-gradient(141deg, rgba(105,193,109,1) 0%, rgba(37,166,148,1) 100%);
+  min-height: 100vh
+}
+
+.container-fluid{
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.1); 
+  box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.1);
+}
+
+.Ajuste{
+  padding: 50px;
+}
+
+.p1{
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 74vh; 
+  -webkit-box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.02); 
+box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.02);
+
+}
+
+.Intro{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Intro > h1{
+  font-weight: bold;
+}
+
+.Intro > p{
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.componente{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-label{
+  font-size: 12px;
+}
+
+.Espacio{
+  margin-top: 50px;
+}
