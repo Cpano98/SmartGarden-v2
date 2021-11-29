@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Temperatura from './components/temp'
-import Tierra from './components/tierra'
-import Luz from './components/luz'
-import Movimiento from './components/movimiento'
+import Temperatura from './components/temp';
+import Tierra from './components/tierra';
+import Luz from './components/luz';
+import Movimiento from './components/movimiento';
+import Lluvia from './components/lluvia';
+
 //Firebase
 import { ref, onValue } from "firebase/database";
 import db from "./util/firebase";
@@ -32,11 +34,9 @@ function App() {
     onValue(sigRef, (snapshot) => {
       setValor(snapshot.child('data').val());
       setaguam(snapshot.child('aguam').val());
-      setdomo(snapshot.child('domo').val());
       sethumTierra1(snapshot.child('humTierra1').val());
       sethumTierra2(snapshot.child('humTierra2').val());
       setled(snapshot.child('led').val());
-      setrain(snapshot.child('rain').val());
     });
   }, []);
 
@@ -69,6 +69,28 @@ function App() {
         setdomo("Abierto");
       } else {
         setdomo("Cerrado");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const sigRef = ref(db, 'device');
+    onValue(sigRef, (snapshot) => {
+      if (snapshot.child('rain').val() == "1") {
+        setrain("Se están detectando lluvias intermitentes.");
+      } else {
+        setrain("No se detectan lluvias próximas.");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const sigRef = ref(db, 'device');
+    onValue(sigRef, (snapshot) => {
+      if (snapshot.child('aguam').val() == "1") {
+        setaguam("El sistema de riego esta activo.");
+      } else {
+        setaguam("El sistema de riego no se encuentra activo.");
       }
     });
   }, []);
@@ -144,9 +166,7 @@ function App() {
               </div>
 
               <div className="s3">
-                <Luz tierra={luz} imagen={"/light.png"} texto={"La luz esta: "}/>
-                <Movimiento temperatura={pir}/>
-                <Luz tierra={domo} imagen={"/techo.png"} texto={"El domo esta:"}/>
+                <Lluvia lluvia={rain} aguam={aguam}/>
               </div>
 
             </div>
