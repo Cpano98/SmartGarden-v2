@@ -3,6 +3,7 @@ import './App.css';
 import Temperatura from './components/temp'
 import Tierra from './components/tierra'
 import Luz from './components/luz'
+import Movimiento from './components/movimiento'
 //Firebase
 import { ref, onValue } from "firebase/database";
 import db from "./util/firebase";
@@ -35,7 +36,6 @@ function App() {
       sethumTierra1(snapshot.child('humTierra1').val());
       sethumTierra2(snapshot.child('humTierra2').val());
       setled(snapshot.child('led').val());
-      setpir(snapshot.child('pir').val());
       setrain(snapshot.child('rain').val());
     });
   }, []);
@@ -43,13 +43,22 @@ function App() {
   useEffect(() => {
     const sigRef = ref(db, 'device');
     onValue(sigRef, (snapshot) => {
-      if (snapshot.child('luz').val() == 1){
+      if (snapshot.child('luz').val() == "1") {
         setluz("Encendida");
-      }else{
+      } else {
         setluz("Apagada");
       }
+    });
+  }, []);
 
-
+  useEffect(() => {
+    const sigRef = ref(db, 'device');
+    onValue(sigRef, (snapshot) => {
+      if (snapshot.child('pir').val() == "1") {
+        setpir("Se DETECTA movimiento en tu jardín.");
+      } else {
+        setpir("No se detecta movimiento en tu jardín");
+      }
     });
   }, []);
 
@@ -118,9 +127,9 @@ function App() {
               </div>
 
               <div className="s1">
-              <Luz tierra={luz} valor={1} />
-                <Temperatura temperatura={Math.round(valor)} />
-                
+                <Luz tierra={luz} />
+                <Movimiento temperatura={pir}/>
+
                 <Tierra tierra={luz} valor={2} />
               </div>
 

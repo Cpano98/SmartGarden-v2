@@ -7,7 +7,7 @@ function tierra({ tierra, valor }) {
             <article className="info">
                 <p id="numsen">{valor}</p>
                 <h1>{tierra}%</h1>
-                <p>de humedad en tierra</p>
+                <p>de humedad en tierra del sensor {valor}</p>
             </article>
 
         </div>
