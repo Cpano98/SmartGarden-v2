@@ -143,6 +143,12 @@ function App() {
                 <Luz tierra={domo} imagen={"/techo.png"} texto={"El domo esta:"}/>
               </div>
 
+              <div className="s3">
+                <Luz tierra={luz} imagen={"/light.png"} texto={"La luz esta: "}/>
+                <Movimiento temperatura={pir}/>
+                <Luz tierra={domo} imagen={"/techo.png"} texto={"El domo esta:"}/>
+              </div>
+
             </div>
           </div>
         </div>
