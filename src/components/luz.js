@@ -1,12 +1,12 @@
 import React from 'react'
 import '../components/tierra.css'
 
-function luz({ tierra }) {
+function luz({ tierra, imagen, texto}) {
     return (
         <div className="luz tierra">
             <article className="info">
-                <img src="/light.png" width="55px"alt=""/>
-                <p id="textoDes">La luz esta:</p>
+                <img src={imagen} width="55px"alt=""/>
+                <p id="textoDes">{texto}</p>
                 <h1 id="textoLuz">{tierra}</h1>
             </article>
         </div>

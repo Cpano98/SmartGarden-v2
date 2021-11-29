@@ -62,6 +62,17 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    const sigRef = ref(db, 'device');
+    onValue(sigRef, (snapshot) => {
+      if (snapshot.child('domo').val() == "1") {
+        setdomo("Abierto");
+      } else {
+        setdomo("Cerrado");
+      }
+    });
+  }, []);
+
   console.log(valor)
   console.log(aguam)
   console.log(domo)
@@ -127,10 +138,9 @@ function App() {
               </div>
 
               <div className="s1">
-                <Luz tierra={luz} />
+                <Luz tierra={luz} imagen={"/light.png"} texto={"La luz esta: "}/>
                 <Movimiento temperatura={pir}/>
-
-                <Tierra tierra={luz} valor={2} />
+                <Luz tierra={domo} imagen={"/techo.png"} texto={"El domo esta:"}/>
               </div>
 
             </div>
