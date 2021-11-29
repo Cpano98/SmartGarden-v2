@@ -44,9 +44,9 @@ function App() {
     const sigRef = ref(db, 'device');
     onValue(sigRef, (snapshot) => {
       if (snapshot.child('luz').val() == 1){
-        setluz("Prendido");
+        setluz("Encendida");
       }else{
-        setluz("Prendido");
+        setluz("Apagada");
       }
 
 

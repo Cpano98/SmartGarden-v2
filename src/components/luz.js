@@ -6,12 +6,10 @@ function luz({ tierra }) {
         <div className="luz tierra">
             <article className="info">
                 <img src="/light.png" width="55px"/>
-                <h1>{tierra}%</h1>
-                <p>de humedad en tierra</p>
+                <p id="textoDes">La luz esta:</p>
+                <h1 id="textoLuz">{tierra}</h1>
             </article>
-
         </div>
     )
 }
-
 export default luz
