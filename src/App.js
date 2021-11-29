@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Temperatura from './components/temp'
+import Tierra from './components/tierra'
+import Luz from './components/luz'
 //Firebase
 import { ref, onValue } from "firebase/database";
 import db from "./util/firebase";
@@ -13,15 +15,54 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   const [valor, setValor] = useState("")
+  const [aguam, setaguam] = useState("")
+  const [domo, setdomo] = useState("")
+
+  const [humTierra1, sethumTierra1] = useState("")
+  const [humTierra2, sethumTierra2] = useState("")
+  const [led, setled] = useState("")
+
+  const [luz, setluz] = useState("")
+  const [pir, setpir] = useState("")
+  const [rain, setrain] = useState("")
 
   useEffect(() => {
     const sigRef = ref(db, 'device');
     onValue(sigRef, (snapshot) => {
       setValor(snapshot.child('data').val());
+      setaguam(snapshot.child('aguam').val());
+      setdomo(snapshot.child('domo').val());
+      sethumTierra1(snapshot.child('humTierra1').val());
+      sethumTierra2(snapshot.child('humTierra2').val());
+      setled(snapshot.child('led').val());
+      setpir(snapshot.child('pir').val());
+      setrain(snapshot.child('rain').val());
+    });
+  }, []);
+
+  useEffect(() => {
+    const sigRef = ref(db, 'device');
+    onValue(sigRef, (snapshot) => {
+      if (snapshot.child('luz').val() == 1){
+        setluz("Prendido");
+      }else{
+        setluz("Prendido");
+      }
+
+
     });
   }, []);
 
   console.log(valor)
+  console.log(aguam)
+  console.log(domo)
+  console.log(humTierra1)
+  console.log(humTierra2)
+  console.log(led)
+
+  console.log(luz)
+  console.log(pir)
+  console.log(rain)
 
   return (
     <div className="App">
@@ -70,7 +111,19 @@ function App() {
 
             </div>
             <div class="col-8 p2">
-              <Temperatura temperatura={Math.round(valor)} />
+              <div className="s1">
+                <Temperatura temperatura={Math.round(valor)} />
+                <Tierra tierra={humTierra1} valor={1} />
+                <Tierra tierra={humTierra2} valor={2} />
+              </div>
+
+              <div className="s1">
+              <Luz tierra={luz} valor={1} />
+                <Temperatura temperatura={Math.round(valor)} />
+                
+                <Tierra tierra={luz} valor={2} />
+              </div>
+
             </div>
           </div>
         </div>

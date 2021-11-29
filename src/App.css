@@ -22,8 +22,14 @@
   padding: 20px;
   min-height: 74vh; 
   -webkit-box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.02); 
-box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.02);
+  box-shadow: 0px 2px 9px 4px rgba(0,0,0,0.02);
 
+}
+
+.s1{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .Intro{
